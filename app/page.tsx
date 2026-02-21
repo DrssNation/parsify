@@ -1,65 +1,114 @@
-import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+
+import { LandingSections } from "@/components/general/landing-sections";
+import { Navbar } from "@/components/general/navbar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="relative min-h-screen overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-[radial-gradient(50rem_50rem_at_8%_-2%,hsl(208_100%_84%/0.28),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(40rem_40rem_at_92%_10%,hsl(284_100%_88%/0.24),transparent_64%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(44rem_44rem_at_45%_95%,hsl(165_85%_78%/0.22),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,hsl(var(--background)),hsl(var(--secondary)/0.35),hsl(var(--background)))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,hsl(var(--foreground))_1px,transparent_0)] bg-size-[24px_24px] opacity-[0.02]" />
+      </div>
+
+      <section className="mx-auto flex w-full max-w-6xl flex-col px-6 pb-16 pt-6 md:px-8">
+        <Navbar />
+
+        <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-center pt-20 text-center md:pt-28">
+          <Badge variant="outline" className="mb-6">
+            AI-powered PDF Analysis
+          </Badge>
+          <h1 className="text-balance text-4xl font-semibold tracking-tight md:text-6xl">
+            Turn complex PDFs into structured data your team can trust.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-6 max-w-2xl text-balance text-base text-muted-foreground md:text-lg">
+            Extract fields, summarize documents, and validate outputs with an AI
+            model designed for real document workflows.
           </p>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+            <Button
+              size="lg"
+              className="gap-2 bg-emerald-300 text-emerald-950 shadow-sm hover:bg-emerald-200"
+            >
+              Upload your first PDF
+              <ArrowRight />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-emerald-200 bg-emerald-50/60 text-emerald-900 hover:bg-emerald-100/70"
+            >
+              See how it works
+            </Button>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+        <LandingSections />
+
+        <footer className="mt-20 rounded-xl border border-primary/15 bg-background/85 px-6 py-8 backdrop-blur">
+          <div className="grid gap-8 md:grid-cols-4">
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-3">
+                <div className="rounded-md bg-emerald-300 px-2 py-1 text-xs font-semibold text-emerald-950">
+                  P
+                </div>
+                <div>
+                  <p className="text-sm font-semibold tracking-tight">Parsify</p>
+                  <p className="text-xs text-muted-foreground">
+                    AI PDF Intelligence
+                  </p>
+                </div>
+              </div>
+              <p className="mt-4 hidden max-w-md text-sm text-muted-foreground sm:block">
+                Analyze PDFs with AI, extract structured data, and ship reliable
+                outputs into your team workflows.
+              </p>
+            </div>
+
+            <div>
+              <p className="mb-3 text-sm font-medium">Product</p>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <a className="block transition-colors hover:text-foreground" href="#features">
+                  Features
+                </a>
+                <a className="block transition-colors hover:text-foreground" href="#workflow">
+                  Workflow
+                </a>
+                <a className="block transition-colors hover:text-foreground" href="#pricing">
+                  Pricing
+                </a>
+              </div>
+            </div>
+
+            <div className="hidden sm:block">
+              <p className="mb-3 text-sm font-medium">Resources</p>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <a className="block transition-colors hover:text-foreground" href="#">
+                  Documentation
+                </a>
+                <a className="block transition-colors hover:text-foreground" href="#">
+                  API
+                </a>
+                <a className="block transition-colors hover:text-foreground" href="#">
+                  Privacy
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 flex flex-col items-start justify-between gap-3 border-t pt-5 text-xs text-muted-foreground md:flex-row md:items-center">
+            <p>© {new Date().getFullYear()} Parsify. All rights reserved.</p>
+            <p className="hidden sm:block">
+              Made by <span className="font-medium text-foreground">DRSS DEV</span>
+            </p>
+          </div>
+        </footer>
+      </section>
+    </main>
   );
 }
