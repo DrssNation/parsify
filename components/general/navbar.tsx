@@ -1,10 +1,10 @@
-import { Menu, User } from "lucide-react";
+import { Menu } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { auth, signOut } from "@/app/auth";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,6 +25,7 @@ export async function Navbar() {
   const profileInitial =
     session?.user?.name?.trim()?.charAt(0)?.toUpperCase() ||
     session?.user?.email?.trim()?.charAt(0)?.toUpperCase();
+  const profileImage = session?.user?.image?.trim();
 
   return (
     <header className="sticky top-4 z-20 rounded-xl border border-primary/15 bg-background/85 px-4 py-3 backdrop-blur supports-backdrop-filter:bg-background/70">
@@ -68,19 +69,20 @@ export async function Navbar() {
                   size="icon-sm"
                   className="size-9 rounded-full p-0"
                 >
-                  <Avatar size="sm">
-                    <AvatarImage
-                      src={session.user.image ?? undefined}
+                  {profileImage ? (
+                    <Image
+                      src={profileImage}
                       alt={session.user.name ?? "User profile"}
+                      width={32}
+                      height={32}
+                      className="size-8 rounded-full object-cover"
+                      unoptimized
                     />
-                    <AvatarFallback>
-                      {profileInitial ? (
-                        profileInitial
-                      ) : (
-                        <User className="size-3.5" />
-                      )}
-                    </AvatarFallback>
-                  </Avatar>
+                  ) : (
+                    <span className="flex size-8 items-center justify-center rounded-full bg-muted text-xs font-medium text-muted-foreground">
+                      {profileInitial ?? "U"}
+                    </span>
+                  )}
                   <span className="sr-only">Open account menu</span>
                 </Button>
               </DropdownMenuTrigger>
